@@ -1,4 +1,3 @@
-
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -20,8 +19,8 @@ USE `Cul_d'ampolla` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Cul_d'ampolla`.`proveidor` (
   `proveidor_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `address` VARCHAR(45) NOT NULL,
+  `nom_proveidor` VARCHAR(45) NOT NULL,
+  `address_proveidor` VARCHAR(45) NOT NULL,
   `ciutat` VARCHAR(45) NOT NULL,
   `codi_postal` INT NOT NULL,
   `país` VARCHAR(2) NOT NULL,
@@ -45,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `Cul_d'ampolla`.`client` (
   `telefon` VARCHAR(12) NOT NULL,
   `e-mail` VARCHAR(45) NOT NULL,
   `data_registre` DATETIME NOT NULL,
-  `treballador_id` INT NULL,
+  `recomanat_per` INT NOT NULL,
   PRIMARY KEY (`client_id`))
 ENGINE = InnoDB;
 
@@ -63,11 +62,11 @@ ENGINE = InnoDB;
 -- Table `Cul_d'ampolla`.`Comanda_ulleres`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Cul_d'ampolla`.`Comanda_ulleres` (
-  `comanda_id` INT NOT NULL,
+  `comanda_id` INT NOT NULL AUTO_INCREMENT,
   `proveidor_id` INT NOT NULL,
   `client_id` INT NOT NULL,
-  `marca` VARCHAR(50) NOT NULL,
-  `tipus_montura` VARCHAR(20) NOT NULL,
+  `marca` VARCHAR(30) NOT NULL,
+  `montura_tipus` VARCHAR(20) NOT NULL,
   `color_montura` VARCHAR(20) NOT NULL,
   `color_vidre` VARCHAR(20) NOT NULL,
   `graduacio_D` VARCHAR(45) NOT NULL,
