@@ -64,7 +64,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Cul_d'ampolla`.`Comanda_ulleres` (
   `comanda_id` INT NOT NULL AUTO_INCREMENT,
   `proveidor_id` INT NOT NULL,
-  `client_id` INT NOT NULL,
+  `data_comanda` DATETIME NOT NULL,
   `marca` VARCHAR(30) NOT NULL,
   `montura_tipus` VARCHAR(20) NOT NULL,
   `color_montura` VARCHAR(20) NOT NULL,
