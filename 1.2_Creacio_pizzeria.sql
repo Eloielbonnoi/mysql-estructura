@@ -18,12 +18,15 @@ CREATE TABLE IF NOT EXISTS `Pizzeria`.`Localitat` (
   `provincia_id` INT NOT NULL,
   PRIMARY KEY (`localitat_id`),
   INDEX `Provincia_id_idx` (`provincia_id` ASC) VISIBLE,
-  CONSTRAINT `Provincia_id`
+  CONSTRAINT `Fk_provincia_id`
     FOREIGN KEY (`provincia_id`)
     REFERENCES `Pizzeria`.`Provincia` (`provincia_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+
 INSERT INTO `Localitat` VALUES (1, 'Centelles', 1);
 INSERT INTO `Localitat` VALUES (2, 'Tona', 1);
 INSERT INTO `Localitat` VALUES (3, 'Aitona', 3);
