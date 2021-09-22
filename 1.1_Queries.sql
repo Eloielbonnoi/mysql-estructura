@@ -8,9 +8,14 @@ AND (data_venda BETWEEN '2018-01-01' AND '2019-01-01')
 
 --1.1 Llista els diferents models d'ulleres que ha venut un empleat durant un any
 
-SELECT * 
+SELECT DISTINCT tipu_montura 
 FROM comanda_ulleres
-WHERE treballador_id = 3
-AND (data_venda BETWEEN '2018-01-01' AND '2019-01-01')
+WHERE treballador_id = 2
+AND (data_venda BETWEEN '2019-01-01' AND '2020-01-01')
 
 -- 1.1 Llista els diferents proveïdors que han subministrat ulleres venudes amb èxit per l'òptica
+
+SELECT DISTINCT proveidor_id
+FROM comanda_ulleres
+WHERE data_venda IS NOT NULL
+ORDER BY proveidor_id

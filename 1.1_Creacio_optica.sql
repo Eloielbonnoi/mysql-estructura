@@ -63,7 +63,7 @@ INSERT INTO `treballador` VALUES (5,'Lluïsa');
 CREATE TABLE IF NOT EXISTS `CdA`.`comanda_ulleres` (
   `comanda_ulleres_id` INT NOT NULL AUTO_INCREMENT,
   `client_id` INT NOT NULL,
-  `data_venda` DATETIME NOT NULL,
+  `data_venda` DATETIME,
   `proveidor_id` INT NOT NULL,
   `marca` VARCHAR(45) NOT NULL,
   `graduacio_ullD` VARCHAR(45) NOT NULL,
@@ -104,6 +104,8 @@ INSERT INTO `comanda_ulleres` VALUES (8, 5, '2018-09-06', 4, "Cacatua", '4F', '2
 INSERT INTO `comanda_ulleres` VALUES (9, 3, '2020-06-03', 2, "No t'hi fixis", '54E', '55E', 'pasta', 'verda', 'transparent', 3, 213.24);
 INSERT INTO `comanda_ulleres` VALUES (10, 1, '2020-07-02', 2, "Marmota", '5E', '65E', 'metal·lica', 'gris', 'transparent', 2, 513.4);
 INSERT INTO `comanda_ulleres` VALUES (11, 3, '2021-07-14', 1, "Cacatua", '24E', '5E', 'flotant', 'groc', 'vermell', 1, 283.4);
+INSERT INTO `comanda_ulleres` VALUES (12, 5, NULL, 1, "No t'hi fixis", '14E', '5Y', 'pasta', 'groc', 'vermell', 3, 823.4);
+INSERT INTO `comanda_ulleres` VALUES (13, 3, NULL , 2, "Cacatua", '4E', '15E', 'flotant', 'verd', 'verd', 1, 683.4);
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
