@@ -15,17 +15,13 @@ INSERT INTO `Provincia` VALUES (4, 'GI');
 CREATE TABLE IF NOT EXISTS `Pizzeria`.`Localitat` (
   `localitat_id` INT NOT NULL AUTO_INCREMENT,
   `localitat` VARCHAR(45) NOT NULL,
-  `provincia_id` INT NOT NULL,
+  `provincia` INT NOT NULL,
   PRIMARY KEY (`localitat_id`),
-  INDEX `Provincia_id_idx` (`provincia_id` ASC) VISIBLE,
-  CONSTRAINT `Fk_provincia_id`
-    FOREIGN KEY (`provincia_id`)
+    FOREIGN KEY (`provincia`)
     REFERENCES `Pizzeria`.`Provincia` (`provincia_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
 
 INSERT INTO `Localitat` VALUES (1, 'Centelles', 1);
 INSERT INTO `Localitat` VALUES (2, 'Tona', 1);
@@ -42,19 +38,15 @@ CREATE TABLE IF NOT EXISTS `Pizzeria`.`Client` (
   `cognoms` VARCHAR(45) NOT NULL,
   `adreça` VARCHAR(45) NOT NULL,
   `CP` INT(5) NOT NULL,
-  `localitat_id` INT NOT NULL,
-  `provincia_id` INT NULL,
+  `localitat` INT NOT NULL,
+  `provincia` INT NULL,
   `telefon` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`client_id`),
-  INDEX `localitat_id_idx` (`localitat_id` ASC) VISIBLE,
-  INDEX `provincia_id_idx` (`provincia_id` ASC) VISIBLE,
-  CONSTRAINT `localitat_id`
-    FOREIGN KEY (`localitat_id`)
+    FOREIGN KEY (`localitat`)
     REFERENCES `Pizzeria`.`Localitat` (`localitat_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `provincia1_id`
-    FOREIGN KEY (`provincia_id`)
+    FOREIGN KEY (`provincia`)
     REFERENCES `Pizzeria`.`Provincia` (`provincia_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -70,7 +62,7 @@ INSERT INTO `Client` VALUES (8, 'Evaristo', 'Paramo', 'C/No somos nada, 2', 0832
 INSERT INTO `Client` VALUES (9, 'Steven', 'Spielverg', 'C/Micasa, 2', 08450, 3, 3, 687113298);
 INSERT INTO `Client` VALUES (10, 'Sílvia', 'Subirós', 'C/Dameargo, 2', 08220, 7, 4, 687453298);
 INSERT INTO `Client` VALUES (11, 'Jaume', 'Subirós', 'C/Dameargo, 6', 08220, 8, 4, 687453298);
-INSERT INTO `Client` VALUES (11, 'Anna', 'Subirós', 'C/Dameo, 6', 08220, 3, 3, 687400298);
+INSERT INTO `Client` VALUES (12, 'Anna', 'Subirós', 'C/Dameo, 6', 08220, 3, 3, 687400298);
 
 CREATE TABLE IF NOT EXISTS `Pizzeria`.`Pizza_categoria` (
   `pizza_categoria_id` INT NOT NULL AUTO_INCREMENT,
@@ -179,41 +171,33 @@ INSERT INTO `Empleat` VALUES (12, 4, 'Mercedes', 'Milà', '67221987E', 996458653
 
 CREATE TABLE IF NOT EXISTS `Pizzeria`.`Comanda` (
   `comanda_id` INT NOT NULL AUTO_INCREMENT,
-  `client_id` INT NOT NULL,
+  `client` INT NOT NULL,
   `data_hora` DATETIME NOT NULL,
   `local/domicili` VARCHAR(4) NOT NULL,
   `quantitat` INT NOT NULL,
   `preu` DECIMAL(6,2) NOT NULL,
-  `botiga_id` INT NOT NULL,
-  `producte_id` INT NOT NULL,
-  `repartidor_id` INT NULL,
+  `botiga` INT NOT NULL,
+  `producte` INT NOT NULL,
+  `repartidor` INT NULL,
   `hora_lliurament` DATETIME NULL,
   PRIMARY KEY (`comanda_id`),
-  INDEX `client_id_idx` (`client_id` ASC) VISIBLE,
-  INDEX `botiga_id_idx` (`botiga_id` ASC) VISIBLE,
-  INDEX `producte_id_idx` (`producte_id` ASC) VISIBLE,
-  INDEX `repartidor_id_idx` (`repartidor_id` ASC) VISIBLE,
-  CONSTRAINT `client_id`
-    FOREIGN KEY (`client_id`)
+    FOREIGN KEY (`client`)
     REFERENCES `Pizzeria`.`Client` (`client_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `botiga_com_id`
-    FOREIGN KEY (`botiga_id`)
+    FOREIGN KEY (`botiga`)
     REFERENCES `Pizzeria`.`Botiga` (`botiga_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `producte_id`
-    FOREIGN KEY (`producte_id`)
+    FOREIGN KEY (`producte`)
     REFERENCES `Pizzeria`.`Producte` (`producte_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `repartidor_id`
-    FOREIGN KEY (`repartidor_id`)
+    FOREIGN KEY (`repartidor`)
     REFERENCES `Pizzeria`.`Empleat` (`empleat_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB
+ENGINE = InnoDB;
 INSERT INTO `Comanda` VALUES (1, 3, '2021-05-12 22:34:34','Domi', 2, 24.54, 2, 2, 3,'2021-05-12 23:40:34' );
 INSERT INTO `Comanda` VALUES (2, 2, '2021-05-13 20:30:34','Domi', 2, 14.54, 2, 2, 3,'2021-05-13 22:12:00' );
 INSERT INTO `Comanda` VALUES (3, 2, '2021-05-13 20:30:34','Domi', 2, 4.54, 2, 3, 3,'2021-05-13 22:12:00' );
