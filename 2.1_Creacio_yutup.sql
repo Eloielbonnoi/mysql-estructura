@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS `Usuari` (
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(9) NOT NULL,
   `data_naixement` DATETIME NULL,
-  `sexe` VARCHAR(45) BINARY NULL,
+  `sexe` ENUM ('H', 'M') NOT NULL,
   `pais` VARCHAR(2) NULL,
   `codi_postal` INT(5) NULL,
   PRIMARY KEY (`id_usuari`))
