@@ -1,6 +1,7 @@
 /*La creació d'aquesta BBDD no funciona del tot. Estan comentades les taules que dan error. No acabo d'entendre perquè apareixen
 aquests errors. No em sembla que es tracti d'un error del tipus tauloa creada referenciant taules que encara no existeixen ja que l'ordre
-de creació em sembla lògic.
+de creació em sembla lògic. Mirar el seguent enllaç
+https://es.stackoverflow.com/questions/291998/error-1822-failed-to-add-foreign-key-constraint-missing-index-for-constraint
 */
 
 DROP DATABASE IF EXISTS `spoty`;
