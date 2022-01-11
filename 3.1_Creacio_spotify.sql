@@ -11,11 +11,11 @@ CREATE TABLE IF NOT EXISTS `spoty`.`Usuari` (
   `data_naixement` DATETIME NULL,
   `sexe` VARCHAR(2) BINARY NOT NULL,
   `pais` VARCHAR(2) NULL,
-  `CP` INT(5) NULL,
+  `CP` INT(6) NULL,
   `nivell_usuari` VARCHAR(4) NOT NULL,
+  `nom_usuari_paypal`VARCHAR (45) NULL DEFAULT(NULL),
   PRIMARY KEY (`id_usuari`))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Subscripció`
@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS `spoty`.`Subscripcio` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `mydb`.`Targetes_credit`
 -- -----------------------------------------------------
@@ -48,35 +47,18 @@ CREATE TABLE IF NOT EXISTS `spoty`.`Targetes_credit` (
     REFERENCES `spoty`.`Usuari` (`id_usuari`))
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `mydb`.`Paypal`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `spoty`.`Paypal` (
-  `id_paypal` INT NOT NULL,
-  `usuari_id` INT NOT NULL,
-  `nom_usuari` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_paypal`),
-    FOREIGN KEY (`usuari_id`)
-    REFERENCES `spoty`.`Usuari` (`id_usuari`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table `mydb`.`Pagament`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `spoty`.`Pagament` (
   `id_pagament` INT NOT NULL AUTO_INCREMENT,
-  `usuari_id` INT NOT NULL,
+  `subscripcio_id` INT NOT NULL,
   `data_pagament` DATETIME NOT NULL,
   `total` DECIMAL(6,2) NOT NULL,
   PRIMARY KEY (`id_pagament`),
-    FOREIGN KEY (`usuari_id`)
-    REFERENCES `spoty`.`Usuari` (`id_usuari`))
+    FOREIGN KEY (`subscripcio_id`)
+    REFERENCES `spoty`.`Subscripcio` (`id_subscripcio`))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Playlist`
@@ -96,7 +78,6 @@ CREATE TABLE IF NOT EXISTS `spoty`.`Playlist` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `mydb`.`Artista`
 -- -----------------------------------------------------
@@ -106,7 +87,6 @@ CREATE TABLE IF NOT EXISTS `spoty`.`Artista` (
   `imatge` BLOB NULL,
   PRIMARY KEY (`id_artista`))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Album`
@@ -124,7 +104,6 @@ CREATE TABLE IF NOT EXISTS `spoty`.`Album` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `mydb`.`Song`
 -- -----------------------------------------------------
@@ -140,7 +119,6 @@ CREATE TABLE IF NOT EXISTS `spoty`.`Song` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Has_favourite_song`
@@ -244,7 +222,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
---`Has_favourite_album`
+-- Has_favourite_album
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `spoty`.`Has_favourite_album` (
   `id_has_favourite_album` INT NOT NULL,
@@ -262,14 +240,14 @@ CREATE TABLE IF NOT EXISTS `spoty`.`Has_favourite_album` (
 ENGINE = InnoDB;
 
 
-INSERT INTO `Usuari` VALUES (1, 'manolu@gmail.com', 012345678, '1992-07-13', 'H', 'ES', 08025, 'free');
-INSERT INTO `Usuari` VALUES (2, 'i_mm_o@gmail.com', 012825678, '1997-11-03', 'D', 'ES', 08425, 'free');
-INSERT INTO `Usuari` VALUES (3, 'l_mo@gmail.com', 011225678, '2001-01-15', 'D', 'ES', 08024, 'prem');
-INSERT INTO `Usuari` VALUES (4, 'miquelet@gmail.com', 012825234, '1998-04-03', 'D', 'FR', 18425, 'free');
-INSERT INTO `Usuari` VALUES (5, 'cacatua@gmail.com', 0128355678, '2002-11-03', 'D', 'FR', 08415, 'prem');
-INSERT INTO `Usuari` VALUES (6, 'matisn@gmail.com', 012829178, '1998-01-13', 'H', 'ES', 18425, 'prem');
-INSERT INTO `Usuari` VALUES (7, 'cactus@hotmail.com', '01AFE678', '1999-07-23', 'H', 'FR', 02425, 'free');
-INSERT INTO `Usuari` VALUES (8, 'canativ@gmail.com', '01DR25678', '1997-12-26', 'D', 'GE', 05425, 'free');
+ INSERT INTO `Usuari` VALUES (1, 'manolu@gmail.com', 012345678, '1992-07-13', 'H', 'ES', 08025, 'prem', 'fandango');
+ INSERT INTO `Usuari` VALUES (2, 'i_mm_o@gmail.com', 012825678, '1997-11-03', 'D', 'ES', 08425, 'free', NULL);
+INSERT INTO `Usuari` VALUES (3, 'l_mo@gmail.com', 011225678, '2001-01-15', 'D', 'ES', 08024, 'prem', 'Maa');
+INSERT INTO `Usuari` VALUES (4, 'miquelet@gmail.com', 012825234, '1998-04-03', 'D', 'FR', 18425, 'free', NULL);
+INSERT INTO `Usuari` VALUES (5, 'cacatua@gmail.com', 0128355678, '2002-11-03', 'D', 'FR', 08415, 'prem', 'cacatue');
+INSERT INTO `Usuari` VALUES (6, 'matisn@gmail.com', 012829178, '1998-01-13', 'H', 'ES', 18425, 'prem', 'manolito');
+INSERT INTO `Usuari` VALUES (7, 'cactus@hotmail.com', '01AFE678', '1999-07-23', 'H', 'FR', 02425, 'free', NULL);
+INSERT INTO `Usuari` VALUES (8, 'canativ@gmail.com', '01DR25678', '1997-12-26', 'D', 'GE', 05425, 'free', NULL);
 
 INSERT INTO `Subscripcio` VALUES (1, '2010-07-13', '2011-07-13', 'paypal', 1);
 INSERT INTO `Subscripcio` VALUES (2, '2011-11-03', '2012-11-03', 'paypal', 2);
@@ -380,4 +358,6 @@ INSERT INTO `Has_favourite_album` VALUES (3, 2, 3);
 INSERT INTO `Has_favourite_album` VALUES (4, 2, 2); 
 INSERT INTO `Has_favourite_album` VALUES (5, 3, 1); 
 INSERT INTO `Has_favourite_album` VALUES (6 ,3, 2); 
+
+
 
