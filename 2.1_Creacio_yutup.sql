@@ -95,8 +95,13 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Usuaris_subscriuen_canals` (
   `id_Usuaris_subscriuen_canals` INT NOT NULL AUTO_INCREMENT,
   `id_canal`INT NOT NULL,
+  `id_usuari_subscrit`INT NOT NULL,
   PRIMARY KEY (`id_Usuaris_subscriuen_canals`),
     FOREIGN KEY (`id_canal`)
+    REFERENCES `yutup`.`Usuari`(`id_usuari_canal`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    FOREIGN KEY (`id_usuari_subscrit`)
     REFERENCES `yutup`.`Usuari`(`id_usuari_canal`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
